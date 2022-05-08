@@ -10,31 +10,78 @@
     <body>
 
         <div class="container" id="pop-up">
-            <a href="/home" class="close">&times;</a>
-            <form class="form" id="login" method="post" action="/">
+           <a href="/home" class="close">&times;</a>
+           <form class="form" id="login" method="post" action="/" onsubmit="return validateLoginForm()">
                 <center>
-                    {{!-- <img src="../Images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;"> --}}
+                   {{!-- <img src="../Images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;"> --}}
                 </center>
-                
+
                 <h1 class="form_title">Login</h1>
                 <div class="form_message form_message_error"></div>
                 <div class="form_input_group">
-                    <input type="text" class="form_input" name="username" autofocus placeholder="Username or Email">
-                    <div class="form_input_error_message"></div>
+                    <input type="text" id="loginUsername" class="form_input" autofocus placeholder="Username">
+                    <div class="error" id="loginUsernameErr"></div>
                 </div>
                 <div class="form_input_group">
-                    <input type="password" class="form_input" name="password" autofocus placeholder="Password">
-                    <div class="form_input_error_message"></div>
+                    <input type="password" id="loginPass" class="form_input" autofocus placeholder="Password">
+                    <div class="error" id="loginPassErr"></div>
                 </div>
                 <button class="form_button" type="submit">SignIn</button>
                 <p class="form_text">
                     <a href="#" class="form_link">Forgot your password?</a>
                 </p>
                 <p class="form_text">
-                    <a class="form__link" href="/signup" id="linkCreateAccount">Don't have an account? Create account</a>
+                    <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
                 </p>
             </form>
         </div>
+        
+    <script>
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+
+        function validateLoginForm(){
+            var loginUsername = document.getElementById("loginUsername").value;
+            var loginPass = document.getElementById("loginPass").value;
+        
+            
+
+            if(loginUsername==""){
+                printError("loginUsernameErr", "Please enter your username.")
+            }else{              
+                var usernameRegEx =  /^[A-Za-z][A-Za-z0-9_]{8,20}$/;
+                if(usernameRegEx.test(loginUsername)){
+                    printError("loginUsernameErr", "");
+                    loginUsernameErr = false;
+                }else{
+                    printError("loginUsernameErr", "Please enter a valid username not less than 8 characters.");
+                }
+            }
+            
+            if(loginPass==""){
+                printError("loginPassErr", "Please enter your password")
+            }else{
+                var loginPassRegEx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                if(loginPassRegEx.test(loginPass)){
+                    printError("loginPassErr", "");
+                    loginPassErr = false;
+                }else{
+                    printError("loginPassErr", "Password didn't matched");
+                }
+            }
+
+
+            if(!loginUsernameErr && !loginPassErr){
+                alert("Your have login successfully !!!");
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+    
+    </script>
 
     </body>
 </html> 
