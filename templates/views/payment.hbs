@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yummy | Payment</title>
+        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/navBarStyle.css">
+    </head>
+    <body>
+      
+      {{>navbar}}
+
+        <section>
+            <form action="" class="payment_form" name="payment_form">
+                <div class="payment method">
+                    <span class="headings">select a payment method</span>
+                    <br><br>
+
+                    <div>
+                        <div class="payment_options first">
+                              <input type="radio" name="paymentradio" class="paymentradio" id="add_card" onchange="radio_checked(this)">
+                              <label for="add_card" class="payment_option_field">
+                                Add Debit/Credit/ATM card <br>
+                                <div class="div_card">
+                                  <br>
+                                  <table class="card_details">
+                                    <tr>
+                                      <td>
+                                        <label for="card">Holder name :</label>
+                                      </td>
+                                      <td>
+                                        <input type="text" name="card" class="sec card name" id="card_name" placeholder="type here">
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                    <label for="card">Account :</label>
+                                      </td>
+                                      <td>
+                                    <input type="text" name="card" class="sec card acc" id="card_acc" placeholder="type here">
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <label for="card">CVV :</label>
+                                      </td>
+                                      <td>
+                                    <input type="text" name="card" class="sec card cvv" id="card_cvv" placeholder="type here">                                
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </label>
+                        </div>
+                        <div class="payment_options">
+                            <input type="radio" name="paymentradio" class="paymentradio" id="net_banking"  onchange="radio_checked(this)"> 
+                            <label for="net_banking" class="payment_option_field">
+                                Net Banking <br>
+                                <select id="nb" name="nb" class="nb">
+                                    <option value="Karnataka bank" class="banks" id="karnataka_bank">Karnataka bank</option>
+                                    <option value="SBI" class="banks" id="sbi">SBI</option>
+                                    <option value="HDFC" class="banks" id="hdfc">HDFC</option>
+                                    <option value="ICFC" class="banks" id="icfc">ICFC</option>
+                                    <option value="Axis Bank" class="banks" id="axis_bank">Axis Bank</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="payment_options">
+                            <input type="radio" name="paymentradio" class="paymentradio" id="upi" onchange="radio_checked(this)"> 
+                            <label for="upi" class="payment_option_field">Other UPI apps</label>
+                        </div>
+                        <div class="payment_options">
+                            <input type="radio" name="paymentradio" class="paymentradio" id="emi" onchange="radio_checked(this)"> 
+                            <label for="emi" class="payment_option_field">EMI</label>
+                        </div>
+                        <div class="payment_options last">
+                            <input type="radio" name="paymentradio" class="paymentradio" id="delivery" onchange="radio_checked(this)"> 
+                            <label for="delivery" class="payment_option_field">Pay on delivery</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment more_options last">
+                    <span class="headings">More payment options</span><br><br>
+
+                    Gift Cards, Vouchers & Promotional Codes
+                </div>
+
+                <center>
+                    <input type="submit" class="btn" value="Review Order">
+                </center>
+            </form>
+        </section>
+
+    <!--Footer-->
+    {{>footer}}
+
+    <script src="jq/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="custom/menu.js"></script>
+    <script src="custom/cart.js"></script>
+
+    </body>
+    
+</html>

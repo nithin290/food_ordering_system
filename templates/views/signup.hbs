@@ -4,42 +4,42 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/loginSignUp.css">
     </head>
     <body>
 
         <div class="container" id="pop-up">
             <a href="/home" class="close">&times;</a>        
-            <form class="form form_hidden" id="createAccount" method="post" onsubmit="return validateSignupForm()">
+            <form class="form" id="createAccount" method="post" onsubmit="return validateSignupForm()" action = "/signup">
                 <center>
-                    {{!-- <img src="../Images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;"> --}}
+                    <img src="images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;">
                 </center>
                 <h1 class="form_title">Create Account / SignUp</h1>
                 <div class="form_message form_message_error"></div>
                 <div class="form_input_group">
-                    <input type="text" id="signupUsername" class="form_input" autofocus placeholder="Username">
+                    <input type="text" name="username" id="signupUsername" class="form_input" autofocus placeholder="Username">
                     <div class="error" id="signupUsernameErr"></div>
                 </div>
                 <div class="form_input_group">
-                    <input type="email" id="emailAdd" class="form_input" autofocus placeholder="Email Address">
+                    <input type="email" name="email" id="emailAdd" class="form_input" autofocus placeholder="Email Address">
                     <div class="error" id="emailAddErr"></div>
                 </div>
                 <div class="form_input_group">
-                    <input type="tel" id="telephone" class="form_input" autofocus placeholder="Phone Number">
+                    <input type="tel" name="phone" id="telephone" class="form_input" autofocus placeholder="Phone Number">
                     <div class="error" id="telephoneErr"></div>
                 </div>
                 <div class="form_input_group">
-                    <input type="password" id="createPass" class="form_input" autofocus placeholder="Create Password">
+                    <input type="password" name="password" id="createPass" class="form_input" autofocus placeholder="Create Password">
                     <div class="error" id="createPassErr"></div>
                 </div>
                 <div class="form_input_group">
                     <input type="password" id="confirmPass" class="form_input" autofocus placeholder="Confirm Password">
                     <div class="error" id="confirmPassErr"></div>
                 </div>
-                <button class="form_button" type="submit">SignUp</button>
+                <button class="form_button" type="submit" name="submit_form">SignUp</button>
                 <p class="form_text">
-                    <a class="form_link" href="./" id="linkLogin">Already have an account? SignIn</a>
+                    <a class="form_link" href="/signin" id="linkLogin">Already have an account? SignIn</a>
                 </p>
             </form>
         </div>
@@ -52,6 +52,7 @@
         }
 
         function validateSignupForm(){
+            var form = document.getElementById("createAccount")[0];
             var signupUsername = document.getElementById("signupUsername").value;
             var emailAdd = document.getElementById("emailAdd").value;
             var telephone = document.getElementById("telephone").value;
@@ -61,7 +62,7 @@
             if(signupUsername==""){
                 printError("signupUsernameErr", "Please enter your username.")
             }else{              
-                var signupusernameRegEx =  /^[A-Za-z][A-Za-z0-9_]{8,20}$/;
+                var signupusernameRegEx =  /^[A-Za-z][A-Za-z0-9_]{7,20}$/;
                 if(signupusernameRegEx.test(signupUsername)){
                     printError("signupUsernameErr", "");
                     signupUsernameErr = false;
@@ -112,14 +113,19 @@
             }else{
                 if(confirmPass == createPass){
                     printError("confirmPassErr", "");
-                    createPassErr = false;
+                    confirmPassErr = false;
                 }else{
                     printError("confirmPassErr", "Password does not matched");
                 }
             }
 
+            {{!-- console.log(signupUsernameErr);
+            console.log(emailAddErr);
+            console.log(telephoneErr);
+            console.log(createPassErr);
+            console.log(confirmPassErr); --}}
             if(!signupUsernameErr && !emailAddErr && !telephoneErr && !createPassErr && !confirmPassErr){
-                alert("Your account created successfully !!!");
+                {{!-- alert("Your account created successfully !!!"); --}}
                 return true;
             }else{
                 return false;

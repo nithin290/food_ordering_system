@@ -1,5 +1,5 @@
 body {
-    background: url("../Images/MkEnK8.jpg") no-repeat center center fixed;
+    background: url("../images/MkEnK8.jpg") no-repeat center center fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,7 +15,7 @@ body {
     min-width: 400px;
 }
 
-.btn {
+.btn_n {
     background-color: #4caf4f;
     color: white;
     padding-top: 0px;
@@ -33,11 +33,11 @@ body {
     float: none;
 }
 
-.btn:hover {
+.btn_n:hover {
     background-color: #3c8b3e;
 }
 
-.btn:active {
+.btn_n:active {
     background-color: #317033;
     transform: scale(0.9);
 }

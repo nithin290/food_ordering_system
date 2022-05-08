@@ -1,7 +1,7 @@
 
 body {
     line-height: 25px;
-    background-image: url('../Images/menu_bgimage.jpeg');
+    background-image: url('../images/menu_bgimage.jpeg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
@@ -26,7 +26,7 @@ body {
     /* padding: 10px; */
     border: 3px solid beige;
     /* margin-left: 10vw; */
-    height: 1400px;
+    height: 1500px;
     /* float: left; */
     color: antiquewhite;
     /* position: absolute; */
@@ -39,7 +39,7 @@ body {
     /* padding: 10px; */
     border: 3px solid beige;
     /* margin-right: 10vw; */
-    height: 1400px;
+    height: 1500px;
     /* float: right; */
     color: antiquewhite;
     /* position: absolute; */

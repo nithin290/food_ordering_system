@@ -72,6 +72,26 @@ app.get("/home", (req, res) => {
     res.render("index");
 })
 
+app.get("/menu", (req, res) => {
+    res.render("menu");
+})
+
+app.get("/cart", (req, res) => {
+    res.render("cart");
+})
+
+app.get("/aboutus", (req, res) => {
+    res.render("aboutus");
+})
+
+app.get("/specialdishes", (req, res) => {
+    res.render("specialdishes");
+})
+
+app.get("/cart/payment", (req, res) => {
+    res.render("payment");
+})
+
 app.post("/signup", [
     check('username')
         .notEmpty()
@@ -101,15 +121,15 @@ app.post("/signup", [
             console.log(req.body);
             var { username, email, phone, password } = req.body;
             console.log(1);
-            console.log(password);
-
+            console.log(username);
+            console.log(email);
             console.log(2);
             var query = `insert into user values ('${username}', '${email}', '${phone}', '${password}')`;
             console.log(query);
             db.query(query, function (err, result) {
                 if (err) throw err
-            });
-            setTimeout(() => {return res.redirect("/home")}, 0); 
+                else setTimeout(() => {return res.redirect("/home")}, 0); 
+        });
 
         } catch (error) {
             res.status(500).send(error);
