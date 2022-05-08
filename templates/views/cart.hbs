@@ -14,21 +14,20 @@
     {{>navbar}}
 
 
-    <form class="cart_form" name="myform" action="/cart/payment">
+    <form class="cart_form" name="myform" action="/cart" method="post">
         <span class="text heading">
             <h1>YOUR ORDER</h1>
         </span>
 
-        <section class="entire">
-            <table>
-                <tr>
-                    <td class="left">
-                        <section class="fields cart_box">
-                            <span class="text cart_box_heading">select the quantity of the ordered items. Set the
-                                quantity to 0 if the ordered item is to be cancelled before making the payment</span>
+        <section class="entire" name="entire">
+            <table name="block_table">
+                <tr name="row">
+                    <td class="left" name="left">
+                        <section class="fields cart_box" name="fields cart_box">
+                            <span class="text cart_box_heading">select the quantity of the ordered items.</span>
 
-                            <center>
-                                <div id="items"></div>
+                            <center name="center_items">
+                                <div id="items" name="items"></div>
 
                                 <a href="/menu"><button type="button" class="btn_n back_to_menu">Back to
                                         Menu</button></a>

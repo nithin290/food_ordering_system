@@ -196,6 +196,22 @@ app.post("/", [
     }
 })  
 
+app.post("/cart", async (req, res) => {
+    try {
+        console.log(req.body);
+        // var { username, email, phone, password } = req.body;
+        // var query = `insert into user values ('${username}', '${email}', '${phone}', '${password}')`;
+        // console.log(query);
+    //     db.query(query, function (err, result) {
+    //         if (err) throw err
+    //         else setTimeout(() => {return res.redirect("/home")}, 0); 
+    // });
+
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
+
 // server create
 app.listen(port, () => {
     console.log(`server is running at port no ${port}`);
