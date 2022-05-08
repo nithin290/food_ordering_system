@@ -123,6 +123,7 @@ body {
     margin-right: 10px;
     width: 300px;
     display: inline-block;
+    text-align: left;
 }
 
 button {

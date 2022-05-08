@@ -77,7 +77,9 @@ app.get("/menu", (req, res) => {
 })
 
 app.get("/cart", (req, res) => {
-    res.render("cart");
+    res.render("cart", {
+        user
+    });
 })
 
 app.get("/aboutus", (req, res) => {
@@ -88,7 +90,7 @@ app.get("/specialdishes", (req, res) => {
     res.render("specialdishes");
 })
 
-app.get("/cart/payment", (req, res) => {
+app.get("/payment", (req, res) => {
     res.render("payment");
 })
 
@@ -128,7 +130,11 @@ app.post("/signup", [
             console.log(query);
             db.query(query, function (err, result) {
                 if (err) throw err
-                else setTimeout(() => {return res.redirect("/home")}, 0); 
+                else { 
+                    user = username;
+                    pswd = password;
+                    setTimeout(() => {return res.redirect("/home")}, 0); 
+                } 
         });
 
         } catch (error) {
@@ -154,6 +160,7 @@ app.post("/", [
 
     // printing all the errors
     console.log(errors);
+    console.log(1);
     if (errors.notEmpty) {
         return res.status(400).json({ errors: errors.array() });
         // req.session.message = {
@@ -199,13 +206,25 @@ app.post("/", [
 app.post("/cart", async (req, res) => {
     try {
         console.log(req.body);
-        // var { username, email, phone, password } = req.body;
-        // var query = `insert into user values ('${username}', '${email}', '${phone}', '${password}')`;
-        // console.log(query);
-    //     db.query(query, function (err, result) {
-    //         if (err) throw err
-    //         else setTimeout(() => {return res.redirect("/home")}, 0); 
-    // });
+        var length = Object.keys(req.body).length;
+        var order_length = (length - 6);
+        var keys = Object.keys(req.body);
+        var values = Object.values(req.body);
+
+        for(let i = 0 ; i < order_length; i+=2) {
+            var item = values[i];
+            var q = values[i+1];
+
+            // console.log(item);
+            // console.log(q);
+
+            var query = `insert into orders(username, dish_name, quantity) values ('${user}', '${item}', '${q}')`;
+            console.log(query);
+            db.query(query, function (err, result) {
+                if (err) throw err
+        });
+        }
+        setTimeout(() => {return res.redirect("/payment")}, 0); 
 
     } catch (error) {
         res.status(500).send(error);

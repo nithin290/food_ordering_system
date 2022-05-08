@@ -11,7 +11,7 @@
 
         <div class="container" id="pop-up">
            <a href="/home" class="close">&times;</a>
-           <form class="form" id="login" method="post" action="/" onsubmit="return validateLoginForm()">
+           <form class="form" id="login" method="post" action="/">
                 <center>
                    <img src="images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;">
                 </center>
@@ -19,11 +19,11 @@
                 <h1 class="form_title">Login</h1>
                 <div class="form_message form_message_error"></div>
                 <div class="form_input_group">
-                    <input type="text" id="loginUsername" class="form_input" autofocus placeholder="Username">
+                    <input type="text" id="loginUsername" name="username" class="form_input" autofocus placeholder="Username">
                     <div class="error" id="loginUsernameErr"></div>
                 </div>
                 <div class="form_input_group">
-                    <input type="password" id="loginPass" class="form_input" autofocus placeholder="Password">
+                    <input type="password" id="loginPass" name="password" class="form_input" autofocus placeholder="Password">
                     <div class="error" id="loginPassErr"></div>
                 </div>
                 <button class="form_button" type="submit">SignIn</button>
