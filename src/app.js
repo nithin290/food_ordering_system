@@ -31,10 +31,9 @@ const partials_path = path.join(__dirname, "../templates/partials");
 app.use('/css', express.static(path.join(__dirname, "../node_modules/bootstrap/dist/css")));
 app.use('/js', express.static(path.join(__dirname, "../node_modules/bootstrap/dist/js")));
 app.use('/jq', express.static(path.join(__dirname, "../node_modules/jquery/dist")));
-app.use('/images', express.static(path.join(__dirname, "../public/images")));
 
 // app.use(express.urlencoded({extended:false}));
-// app.use('/custom', express.static(path.join(__dirname, "../node_modules/custom")));   // for the custome js
+app.use('/custom', express.static(path.join(__dirname, "../node_modules/custom")));   // for the custome js 
 app.use(express.static(static_path));    // for using just the static pages
 
 // for parsing application/json
@@ -71,10 +70,6 @@ app.get("/signup", (req, res) => {
 
 app.get("/home", (req, res) => {
     res.render("index");
-})
-
-app.get("/contact", (req, res) => {
-    res.render("contact");
 })
 
 app.post("/signup", [
@@ -160,7 +155,6 @@ app.post("/", [
                 if(typeof rows[0] != 'undefined') {
                     user = username;
                     pswd = password;
-                    res.render('signin', {})
                     setTimeout(() => {return res.redirect('/home')}, 0);
                 }
                 else {
