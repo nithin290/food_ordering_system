@@ -10,39 +10,124 @@
     <body>
 
         <div class="container" id="pop-up">
-            <a href="/home" class="close">&times;</a>
-            <form class="form" id="createAccount" method="post" action="/signup">
-            <center>
-                {{!-- <img src="../Images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;"> --}}
-            </center>
-            <h1 class="form_title">Create Account / SignUp</h1>
-            <div class="form_message form_message_error"></div>
-            <div class="form_input_group">
-                <input type="text" id="signupUsername" name="username" class="form_input" autofocus placeholder="Username">
-                <div class="form_input_error_message"></div>
-            </div>
-            <div class="form_input_group">
-                <input type="email" class="form_input" name="email" autofocus placeholder="Email Address">
-                <div class="form_input_error_message"></div>
-            </div>
-            <div class="form_input_group">
-                <input type="tel" class="form_input" name="phone" autofocus placeholder="Phone Number">
-                <div class="form_input_error_message"></div>
-            </div>
-            <div class="form_input_group">
-                <input type="password" class="form_input" name="password" autofocus placeholder="Password">
-                <div class="form_input_error_message"></div>
-            </div>
-            <div class="form_input_group">
-                <input type="password" class="form_input" autofocus placeholder="Confirm password">
-                <div class="form_input_error_message"></div>
-            </div>
-            <button class="form_button" type="submit">SignUp</button>
-            <p class="form_text">
-                <a class="form_link" href="/" id="linkLogin">Already have an account? SignIn</a>
-            </p>
-        </form>
+            <a href="/home" class="close">&times;</a>        
+            <form class="form form_hidden" id="createAccount" method="post" onsubmit="return validateSignupForm()">
+                <center>
+                    {{!-- <img src="../Images/yummy.jpg" alt="logo" width="25%" style="border-radius: 50%;"> --}}
+                </center>
+                <h1 class="form_title">Create Account / SignUp</h1>
+                <div class="form_message form_message_error"></div>
+                <div class="form_input_group">
+                    <input type="text" id="signupUsername" class="form_input" autofocus placeholder="Username">
+                    <div class="error" id="signupUsernameErr"></div>
+                </div>
+                <div class="form_input_group">
+                    <input type="email" id="emailAdd" class="form_input" autofocus placeholder="Email Address">
+                    <div class="error" id="emailAddErr"></div>
+                </div>
+                <div class="form_input_group">
+                    <input type="tel" id="telephone" class="form_input" autofocus placeholder="Phone Number">
+                    <div class="error" id="telephoneErr"></div>
+                </div>
+                <div class="form_input_group">
+                    <input type="password" id="createPass" class="form_input" autofocus placeholder="Create Password">
+                    <div class="error" id="createPassErr"></div>
+                </div>
+                <div class="form_input_group">
+                    <input type="password" id="confirmPass" class="form_input" autofocus placeholder="Confirm Password">
+                    <div class="error" id="confirmPassErr"></div>
+                </div>
+                <button class="form_button" type="submit">SignUp</button>
+                <p class="form_text">
+                    <a class="form_link" href="./" id="linkLogin">Already have an account? SignIn</a>
+                </p>
+            </form>
         </div>
+        
+        
+   <script>
+
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+
+        function validateSignupForm(){
+            var signupUsername = document.getElementById("signupUsername").value;
+            var emailAdd = document.getElementById("emailAdd").value;
+            var telephone = document.getElementById("telephone").value;
+            var createPass = document.getElementById("createPass").value;
+            var confirmPass = document.getElementById("confirmPass").value;
+
+            if(signupUsername==""){
+                printError("signupUsernameErr", "Please enter your username.")
+            }else{              
+                var signupusernameRegEx =  /^[A-Za-z][A-Za-z0-9_]{8,20}$/;
+                if(signupusernameRegEx.test(signupUsername)){
+                    printError("signupUsernameErr", "");
+                    signupUsernameErr = false;
+                }else{
+                    printError("signupUsernameErr", "Please create a valid username not less than 8 characters.");
+                }
+            }
+
+            if(emailAdd==""){
+                printError("emailAddErr", "Please enter your e-mail address")
+            }else{
+                var emailRegEx = /^\w+([\.-]?\w+)*@\w+(\.\w{2,3})+$/
+                if(emailRegEx.test(emailAdd)){
+                    printError("emailAddErr", "");
+                    emailAddErr = false;
+                }else{
+                    printError("emailAddErr", "Please enter a valid  e-mail address as 'usermail@gmail.com'.")
+                }
+            }
+
+            if(telephone==""){
+                printError("telephoneErr", "Please enter your password")
+            }else{
+                var emailRegEx =  /^\d{10}$/;
+                if(emailRegEx.test(telephone)){
+                    printError("telephoneErr", "");
+                    telephoneErr = false;
+                }else{
+                    printError("telephoneErr", "Please enter a valid 10-digit phone number.")
+                }
+            }
+
+
+            if(createPass==""){
+                printError("createPassErr", "Please enter your password")
+            }else{
+                var createPassRegEx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                if(createPassRegEx.test(createPass)){
+                    printError("createPassErr", "");
+                    createPassErr = false;
+                }else{
+                    printError("createPassErr", "Please create a strong password between 7 to 15 characters which contain at least one numeric digit and a special character'.")
+                }
+            }
+
+            if(confirmPass==""){
+                printError("confirmPassErr", "Please enter your password")
+            }else{
+                if(confirmPass == createPass){
+                    printError("confirmPassErr", "");
+                    createPassErr = false;
+                }else{
+                    printError("confirmPassErr", "Password does not matched");
+                }
+            }
+
+            if(!signupUsernameErr && !emailAddErr && !telephoneErr && !createPassErr && !confirmPassErr){
+                alert("Your account created successfully !!!");
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+    
+    </script>
 
     </body>
 </html> 
